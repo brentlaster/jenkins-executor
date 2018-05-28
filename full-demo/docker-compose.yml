@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   master:
-    image: ericsmalling/jenkins-master
+          image: brentlaster/jenkins-master
     ports:
       - 8080:8080
     deploy:
@@ -22,12 +22,9 @@ services:
       - master:/var/jenkins_home
     networks:
       - jenkins
-    secrets:
-      - jenkins_user
-      - jenkins_password
-
+   
   agent:
-    image: ericsmalling/jenkins-agent
+    image: brentlaster/jenkins-agent
     environment:
       - "MASTER_HOST=master"
       - "MASTER_JNLP_PORT=50000"
@@ -57,12 +54,6 @@ services:
 volumes:
   master:
   agent-workspace:
-
-secrets:
-  jenkins_user:
-    file: secrets/jenkins_user
-  jenkins_password:
-    file: secrets/jenkins_password
 
 networks:
   jenkins:
