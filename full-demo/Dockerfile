@@ -29,12 +29,13 @@ FROM jenkins/slave:3.16-1-alpine AS jenkins-agent
 USER root
 RUN mkdir -p /var/jenkins_workspace
 RUN chown -R jenkins:jenkins /var/jenkins_workspace
-USER jenkins
 
 COPY --from=docker-fetch /docker/* /usr/bin/
 
 ADD --chown=jenkins:jenkins https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/3.8/swarm-client-3.8.jar /home/jenkins/swarm-client.jar
 COPY --chown=jenkins:jenkins wait-for-it.sh /home/jenkins/wait-for-it.sh
+
+USER jenkins
 
 ENV JENKINS_USER_FILE "/run/secrets/jenkins_user"
 ENV JENKINS_PASSWORD_FILE "/run/secrets/jenkins_password"
