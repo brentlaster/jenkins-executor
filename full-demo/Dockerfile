@@ -9,7 +9,7 @@ RUN cd / && curl -L -so docker.tgz ${DOCKER_URL} && \
     curl -L -so docker/docker-compose https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-linux-x86_64 && \
     chmod +x docker/*
 
-FROM jenkins/jenkins:2.89.3-alpine AS jenkins-master
+FROM bclaster/dc_jenkins:1.5 AS jenkins-master
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
