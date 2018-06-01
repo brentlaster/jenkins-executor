@@ -40,6 +40,12 @@ RUN chown jenkins:jenkins /home/jenkins/wait-for-it.sh
 
 USER jenkins
 
+# Add job definitions
+COPY jobs/ /usr/share/jenkins/ref/jobs/
+
+
+
+
 ENV JENKINS_USER_FILE "/run/secrets/jenkins_user"
 ENV JENKINS_PASSWORD_FILE "/run/secrets/jenkins_password"
 ENV DOCKER_TLS_VERIFY=1
