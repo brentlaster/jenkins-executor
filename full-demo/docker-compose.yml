@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   master:
-    image: ericsmalling/jenkins-master
+    image: bclaster/jenkins-master
     ports:
       - 8080:8080
     deploy:
@@ -27,7 +27,7 @@ services:
       - jenkins_password
 
   agent:
-    image: ericsmalling/jenkins-agent
+    image: bclaster/jenkins-agent
     environment:
       - "MASTER_HOST=master"
       - "MASTER_JNLP_PORT=50000"
